@@ -1,4 +1,4 @@
 export default {
-  '**/*.{js,jsx,ts,tsx}': ['eslint --fix', 'prettier --write', 'git add'],
-  '**/*.{json,css,md}': ['prettier --write', 'git add'],
+  '**/*.{js,jsx,ts,tsx}': ['eslint --fix', 'prettier --write'],
+  '**/*.{json,css,md}': ['prettier --write'],
 };
