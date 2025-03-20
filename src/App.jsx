@@ -1,34 +1,33 @@
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
-import { useState } from 'react';
+import About from './pages/About';
+import DashboardHome from './pages/Dashboard/Home';
+import DashboardLayout from './pages/Dashboard/Layout';
+import DashboardSettings from './pages/Dashboard/Settings';
+import Home from './pages/Home';
+import Post from './pages/Post';
 
-import viteLogo from '/vite.svg';
-
-import reactLogo from './assets/react.svg';
-
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount(count => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <BrowserRouter>
+      <nav style={{ display: 'flex', gap: '10px', padding: '10px' }}>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/post/123">Post</Link>
+        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/dashboard/settings">Dashboard Settings</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/post/:id" element={<Post />} />
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<DashboardHome />} />
+          <Route path="settings" element={<DashboardSettings />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;

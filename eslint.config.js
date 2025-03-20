@@ -29,6 +29,13 @@ export default [
       import: eslintPluginImport,
       'jsx-a11y': jsxA11y,
     },
+    settings: {
+      'import/resolver': {
+        node: {
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        },
+      },
+    },
     rules: {
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
@@ -44,7 +51,12 @@ export default [
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
 
-      'import/no-unresolved': 'error',
+      'import/no-unresolved': [
+        'error',
+        {
+          ignore: ['^/'],
+        },
+      ],
       'import/extensions': [
         'error',
         'ignorePackages',
@@ -53,6 +65,7 @@ export default [
           jsx: 'never',
         },
       ],
+
       'jsx-a11y/anchor-is-valid': 'warn',
       'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', '.js'] }],
     },
